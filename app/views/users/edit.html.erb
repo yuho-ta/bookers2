@@ -1,0 +1,33 @@
+<div style="text-align:center">
+  <h2>User info</h2>
+  
+  <% if @user.errors.any? %>
+      <div>
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</h2>
+  
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+  
+  <div>
+    <%= form_with model: @user do |f| %>
+    <div>
+      <%= f.label :name, style: "display: block" %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <label for="inputImage">Image</label><br>
+      <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "*.jp" %>  
+    </div>
+    <div>
+      <%= f.label :introduction, style: "display: block" %>
+      <%= f.text_field :introduction %>
+    </div>
+      <%= f.submit "Update User" %>
+    <% end %>
+  </div>
+</div>

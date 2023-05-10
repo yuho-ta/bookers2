@@ -1,0 +1,22 @@
+  <div>
+      <h2>User info</h2>
+        <% if @user.profile_image.attached? %>
+          <%= image_tag @user.profile_image, :class => "mw50" %>
+        <% else %>
+          <%= image_tag 'default-image' %>
+        <% end %> 
+      <table class="table table-hover table-inverse" style="margin-bottom: 2rem">
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td><%= @user.name%></td>
+          </tr>
+          <tr>
+            <td>introduction</td>
+            <td><%= @user.introduction%></td>
+          </tr>  
+        </tbody>
+      </table>
+      <a class="btn btn-outline-secondary btn-block", href="/users/<%= @user.id %>/edit", style="width: 100%"><i class="fas fa-user-cog"></i></a>
+</div>
+  

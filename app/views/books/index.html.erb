@@ -1,0 +1,61 @@
+<div class="container">
+
+    <div>
+        <%= flash[:notice] %>
+    </div>   
+    
+    <% if @book.errors.any? %>
+        <div>
+          <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+    
+          <ul>
+            <% @book.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="row">
+        
+        <div class="col-md-3">
+            <div>
+                <%= render 'users/userinfo' %>
+            </div>
+            
+            
+            <div>
+                <%= render 'newbook', book: @book%>
+            </div>
+        </div>
+        
+        
+        <div class="col-md-8 offset-md-1">
+            <h2>Books</h2>
+            <table class="table table-hover table-inverse" style="border-collapse: collapse">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Opinion</th>
+                    </tr>
+                <thead>
+                
+                <tbody>
+                    <% @books.each do |book|%>
+                      <tr>
+                          <td>
+                          <%= link_to user_path(book.user.id) do%>
+                               <%= image_tag 'default-image'%>
+                          <% end %>
+                          <%= link_to book_path(book.id) do%>
+                             　<%= book.title %>
+                          <% end %>
+                          </td>
+                          <td><%= book.body%></td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
