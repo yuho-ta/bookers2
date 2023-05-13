@@ -8,14 +8,13 @@ before_action :authenticate_user!
      @book=Book.find(params[:id])
      @book_new=Book.new
      @user=@book.user
-     @profile_image=@book.user.profile_image
    end 
    
    def index
      @books=Book.all
+     @book_new=Book.new
      @book=Book.new
      @user=current_user
-     @profile_image=@user.profile_image
    end 
    
    def create
@@ -27,6 +26,7 @@ before_action :authenticate_user!
         flash[:notice]="You have created book successfully."
         redirect_to book_path(@book)
      else 
+        
         render "index"
      end
    end 
